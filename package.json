@@ -1,6 +1,6 @@
 {
   "name": "innerject",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "James Pedid",
   "devDependencies": {
     "babel-cli": "^6.24.1",
