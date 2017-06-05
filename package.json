@@ -1,6 +1,6 @@
 {
   "name": "innerject",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "James Pedid",
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -18,5 +18,18 @@
   "files": [
     "lib"
   ],
-  "main": "lib/index.js"
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamespedid/innerject"
+  },
+  "keywords": [
+    "javascript",
+    "dependency",
+    "injection",
+    "container",
+    "inversion",
+    "control",
+    "innerject"
+  ]
 }
