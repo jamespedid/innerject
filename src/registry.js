@@ -5,6 +5,22 @@ class Registry {
         this.resolve = this._resolve.bind(this);
     }
 
+    has(key) {
+        return this._components.has(key);
+    }
+
+    unregister(key) {
+        this._components.delete(key);
+    }
+
+    resetRegistry() {
+        this._components = new Map();
+    }
+
+    resetFactoryInstances() {
+        this._factoryInstances = new Map();
+    }
+
     registerClass(key, Class) {
         this.register('class', key, Class);
     }
