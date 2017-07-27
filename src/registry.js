@@ -13,11 +13,8 @@ class Registry {
         this._components.delete(key);
     }
 
-    resetRegistry() {
+    reset() {
         this._components = new Map();
-    }
-
-    resetFactoryInstances() {
         this._factoryInstances = new Map();
     }
 

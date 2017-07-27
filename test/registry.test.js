@@ -133,4 +133,28 @@ describe('Registry', function () {
             expect(testClass1).to.equal(testClass2);
         });
     });
+
+    describe('registry maintenance', function () {
+        it('should have a function to check if a key is registered', function () {
+            const registry = new Registry();
+            registry.registerClass(TestClass, TestClass);
+            expect(registry.has(TestClass)).to.equal(true);
+            expect(registry.has('anotherkey')).to.equal(false);
+        });
+
+        it('should have a function to unregister a key', function () {
+            const registry = new Registry();
+            registry.registerClass(TestClass, TestClass);
+            registry.unregister(TestClass);
+            expect(registry.has(TestClass)).to.equal(false);
+        });
+
+        it('should have a function to reset the registry', function () {
+            const registry = new Registry();
+            registry.registerClass(TestClass, TestClass);
+            registry.reset();
+            expect(registry._components.size).to.equal(0);
+            expect(registry._factoryInstances.size).to.equal(0);
+        })
+    })
 });
