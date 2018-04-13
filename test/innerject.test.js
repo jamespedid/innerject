@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Registry, innerject } from '../src';
+import { Registry, innerject, innerjectFunc } from '../src';
 
 describe('innerject', function () {
     const registry = new Registry();
@@ -34,23 +34,31 @@ describe('innerject', function () {
         return [{ dependencyA, dependencyB }];
     }, registry.resolve)(DependencyC);
 
-    class Target {
-        constructor({dependencyA, dependencyC}, ...args) {
-            this.dependencyA = dependencyA;
-            this.dependencyC = dependencyC;
-            this.args = args;
-        }
-
-        get value() {
-            return `${this.dependencyA.value} ${this.dependencyC.value} ${this.args.join(' ')}`
-        }
+    function target({
+        dependencyA,
+        dependencyC,
+    }, ...args) {
+        return `${dependencyA.value} ${dependencyC.value} ${args.join(' ')}`
     }
 
-    const InnerjectedTarget = innerject((resolve, args) => {
+    function target2({
+        dependencyA,
+        dependencyB
+    }) {
+        return [dependencyA, dependencyB, this];
+    }
+
+    const innerjectedFunc = innerjectFunc((resolve, args) => {
         const dependencyA = resolve('dependencyA');
         const dependencyC = resolve('dependencyC');
         return [{ dependencyA, dependencyC }, ...args];
-    }, registry.resolve)(Target);
+    }, registry.resolve)(target);
+
+    const innerjectedFunc2 = innerjectFunc((resolve, args) => {
+        const dependencyA = resolve('dependencyA');
+        const dependencyB = resolve('dependencyB');
+        return [{ dependencyA, dependencyB }, ...args];
+    }, registry.resolve)(target2);
 
     registry.registerClass('dependencyA', DependencyA);
     registry.registerInstance('dependencyB', new DependencyB());
@@ -61,8 +69,18 @@ describe('innerject', function () {
         expect(dependencyC.value).to.equal('DependencyA DependencyB');
     });
 
-    it('should create InnerjectedTarget with dependencyA and dependencyC resolved', function () {
-        const innerjectedTarget = new InnerjectedTarget('argument1', 'argument2');
-        expect(innerjectedTarget.value).to.equal('DependencyA DependencyA DependencyB argument1 argument2');
+    it('should create innerjectedFunc with dependencyA and dependencyC resolved', function () {
+        const result = innerjectedFunc('argument1', 'argument2');
+        expect(result).to.equal('DependencyA DependencyA DependencyB argument1 argument2');
+    });
+
+    it('should have the wrapped function available', function () {
+        expect(innerjectedFunc.wrappedFunction).to.equal(target);
+    });
+
+    it('innerjected function this should be undefined', function () {
+        const [,,thisObj] = innerjectedFunc2();
+        expect(thisObj).to.equal(undefined);
     })
+
 });

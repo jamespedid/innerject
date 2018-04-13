@@ -1,11 +1,11 @@
 {
   "name": "innerject",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "James Pedid",
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2017": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-register": "^6.24.1",
     "chai": "^4.0.0",
     "mocha": "^3.4.2"
