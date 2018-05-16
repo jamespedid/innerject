@@ -13,7 +13,7 @@ describe('innerject', function () {
 
     class DependencyB {
         get value() {
-            return 'DependencyB'
+            return 'DependencyB';
         }
     }
 
@@ -24,7 +24,7 @@ describe('innerject', function () {
         }
 
         get value() {
-            return `${this.dependencyA.value} ${this.dependencyB.value}`
+            return `${this.dependencyA.value} ${this.dependencyB.value}`;
         }
     }
 
@@ -38,12 +38,12 @@ describe('innerject', function () {
         dependencyA,
         dependencyC,
     }, ...args) {
-        return `${dependencyA.value} ${dependencyC.value} ${args.join(' ')}`
+        return `${dependencyA.value} ${dependencyC.value} ${args.join(' ')}`;
     }
 
     function target2({
         dependencyA,
-        dependencyB
+        dependencyB,
     }) {
         return [dependencyA, dependencyB, this];
     }
@@ -79,8 +79,12 @@ describe('innerject', function () {
     });
 
     it('innerjected function this should be undefined', function () {
-        const [,,thisObj] = innerjectedFunc2();
+        const [, , thisObj] = innerjectedFunc2();
         expect(thisObj).to.equal(undefined);
-    })
+    });
+
+    it('should have a clear class name', function () {
+        expect(InnerjectedDependencyC.name).to.equal('Innerject(DependencyC)')
+    });
 
 });
