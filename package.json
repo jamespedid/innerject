@@ -5,10 +5,10 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.24.1",
     "chai": "^4.0.0",
-    "mocha": "^3.4.2"
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "build": "babel --out-dir lib src",
