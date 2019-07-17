@@ -80,6 +80,6 @@ class Registry {
     }
 }
 
-const defaultRegistry = new Registry();
+export const defaultRegistry = new Registry();
 Registry.defaultRegistry = defaultRegistry;
 export default Registry;
