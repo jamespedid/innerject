@@ -13,7 +13,7 @@
   },
   "exports": {
     "require": "./lib/index.js",
-    "module": "./esm/wrapper.js"
+    "import": "./esm/wrapper.js"
   },
   "scripts": {
     "build": "babel --out-dir lib src",
