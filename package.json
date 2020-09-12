@@ -18,7 +18,7 @@
   "scripts": {
     "build": "babel --out-dir lib src",
     "prepublish": "npm run build && npm run test",
-    "test": "mocha --compilers babel-register test"
+    "test": "mocha --compilers @babel/register test"
   },
   "files": [
     "lib"
