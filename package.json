@@ -21,7 +21,8 @@
     "test": "mocha --compilers @babel/register test"
   },
   "files": [
-    "lib"
+    "lib",
+    "esm"
   ],
   "main": "lib/index.js",
   "repository": {
