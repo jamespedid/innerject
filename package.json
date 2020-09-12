@@ -10,6 +10,10 @@
     "chai": "^4.2.0",
     "mocha": "^5.2.0"
   },
+  "exports": {
+    "require": "./lib/index.js",
+    "module": "./esm/wrapper.js"
+  },
   "scripts": {
     "build": "babel --out-dir lib src",
     "prepublish": "npm run build && npm run test",
