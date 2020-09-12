@@ -5,3 +5,4 @@ export const innerject = Innerject.innerject;
 export const innerjectFunc = Innerject.innerjectFunc;
 export const combinedRegistryResolve = Innerject.combinedRegistryResolve;
 export const defaultRegistry = Innerject.defaultRegistry;
+export default innerject;
