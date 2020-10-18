@@ -5,7 +5,7 @@ declare module "innerject" {
     export type Factory<T> = (...args: any[]) => T;
     export type RegistryType = 'class'|'instance'|'factory'|'instanceFactory';
     export type FunctionType<T> = (...args: any[]) => T;
-    export type Resolver = (key: string, ...args: any[]) => any;
+    export type Resolver = (key: KeyType<any>, ...args: any[]) => any;
     export type MapArgsHandler = (resolve: Resolver, ...args: any[]) => any[];
 
     export interface IRegistry {
