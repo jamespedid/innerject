@@ -22,7 +22,8 @@
   },
   "files": [
     "lib",
-    "esm"
+    "esm",
+    "index.d.ts"
   ],
   "main": "lib/index.js",
   "repository": {
