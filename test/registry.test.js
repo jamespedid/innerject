@@ -43,6 +43,34 @@ describe('Registry', function () {
         });
     });
 
+    describe('registering a singleton', function () {
+        it('should have a function to register an object as a class', function () {
+            const registry = new Registry();
+            registry.registerSingleton(TestClass, TestClass);
+            expect(registry._getRegistryItem(TestClass)).to.be.an('object');
+            expect(registry._getRegistryItem(TestClass)).to.have
+                .property('type')
+                .that.equals('singleton');
+            expect(registry._getRegistryItem(TestClass)).to.have
+                .property('object')
+                .that.equals(TestClass);
+        });
+
+        it('should resolve an instance of that class', function () {
+            const registry = new Registry();
+            registry.registerSingleton(TestClass, TestClass);
+            expect(registry.resolve(TestClass)).to.be.an.instanceOf(TestClass);
+        });
+
+        it('should resolve the same object each time', function () {
+            const registry = new Registry();
+            registry.registerSingleton(TestClass, TestClass);
+            const testClass1 = registry.resolve(TestClass);
+            const testClass2 = registry.resolve(TestClass);
+            expect(testClass1).to.equal(testClass2);
+        });
+    });
+
     describe('registering an instance', function () {
         it('should have a function to register an instance of a class', function () {
             const registry = new Registry();

@@ -13,6 +13,7 @@ declare module "innerject" {
         unregister(key: string): void;
         reset(): void;
         registerClass<T=unknown>(key: KeyType<T>, Class: ClassType<T>): void;
+        registerSingleton<T=unknown>(key: KeyType<T>, Class: ClassType<T>): void;
         registerInstance<T=unknown>(key: KeyType<T>, instance: T): void;
         registerFactory<T=unknown>(key: KeyType<T>, factory: Factory<T>): void;
         registerInstanceFactory<T=unknown>(key: KeyType<T>, factory: Factory<T>): void;
@@ -26,6 +27,7 @@ declare module "innerject" {
         public unregister(key: string): void;
         public reset(): void;
         public registerClass<T=unknown>(key: KeyType<T>, Class: ClassType<T>): void;
+        public registerSingleton<T=unknown>(key: KeyType<T>, Class: ClassType<T>): void;
         public registerInstance<T=unknown>(key: KeyType<T>, instance: T): void;
         public registerFactory<T=unknown>(key: KeyType<T>, factory: Factory<T>): void;
         public registerInstanceFactory<T=unknown>(key: KeyType<T>, factory: Factory<T>): void;

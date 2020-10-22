@@ -22,6 +22,10 @@ class Registry {
         this.register('class', key, Class);
     }
 
+    registerSingleton(key, Class) {
+        this.register('singleton', key, Class);
+    }
+
     registerInstance(key, instance) {
         this.register('instance', key, instance);
     }
@@ -63,6 +67,14 @@ class Registry {
         switch(type) {
             case 'class':
                 return new object(...args);
+            case 'singleton':
+                value = this._getFactoryInstance(key);
+                if (typeof value !== 'undefined') {
+                    return value;
+                }
+                value = new object(...args);
+                this._factoryInstances.set(key, value);
+                return value;
             case 'instance':
                 return object;
             case 'factory':
