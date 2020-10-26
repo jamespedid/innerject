@@ -3,7 +3,7 @@ declare module "innerject" {
     export type KeyType<T> = string | symbol | ClassType<T> | T;
     export type ValueType<T> = T|ClassType<T>|Factory<T>;
     export type Factory<T> = (...args: any[]) => T;
-    export type RegistryType = 'class'|'instance'|'factory'|'instanceFactory';
+    export type RegistryType = 'class'|'singleton'|'instance'|'factory'|'instanceFactory';
     export type FunctionType<T> = (...args: any[]) => T;
     export type Resolver = (key: KeyType<any>, ...args: any[]) => any;
     export type MapArgsHandler = (resolve: Resolver, ...args: any[]) => any[];
@@ -39,7 +39,7 @@ declare module "innerject" {
     }
 
     export function innerject<T=unknown>(mapArgs: MapArgsHandler, resolve?: Resolver): (Class: ClassType<T>) => ClassType<T>;
-    export function innerjectFunc<T=unknown>(mapArgs: MapArgsHandler, resolve?: Resolver): (Class: ClassType<T>) => (fn: FunctionType<T>) => FunctionType<T>;
+    export function innerjectFunc<T=unknown>(mapArgs: MapArgsHandler, resolve?: Resolver): (fn: FunctionType<T>) => (fn: FunctionType<T>) => FunctionType<T>;
     export function combinedRegistryResolve(...resolvers: Resolver[]): Resolver;
     export const defaultRegistry: Registry;
 }
