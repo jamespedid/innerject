@@ -60,7 +60,7 @@ class Registry {
     _resolve(key, ...args) {
         const component = this._getRegistryItem(key);
         if (!component) {
-            return new RangeError(`Cannot resolve ${key} dependency`);
+            return new RangeError(`Cannot resolve ${key instanceof Symbol ? key.toString() : key} dependency`);
         }
         const { type, object } = component;
         let value;
