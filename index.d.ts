@@ -40,6 +40,6 @@ declare module "innerject" {
 
     export function innerject<T=unknown>(mapArgs: MapArgsHandler, resolve?: Resolver): (Class: ClassType<T>) => ClassType<T>;
     export function innerjectFunc<T=unknown>(mapArgs: MapArgsHandler, resolve?: Resolver): (fn: FunctionType<T>) => FunctionType<T>;
-    export function combinedRegistryResolve(...resolvers: Resolver[]): Resolver;
+    export function combinedRegistryResolve(...registries: IRegistry[]): Resolver;
     export const defaultRegistry: Registry;
 }
